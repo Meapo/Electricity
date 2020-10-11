@@ -14,14 +14,6 @@ public class Player1 : PlayerController
         {
             h = 0;
         }
-        else if (h>0&&StopLeft)
-        {
-            StopLeft = false;
-        }
-        else if (h<0&&StopRight)
-        {
-            StopRight = false;
-        }
         if (h > 0 && !isFacingRight)
         {
             Flip();
@@ -38,6 +30,22 @@ public class Player1 : PlayerController
         if (Input.GetKeyDown(KeyCode.W)&&isGround)
         {
             isPressed = true;
+        }
+    }
+
+    protected override void pressPickup()
+    {
+        base.pressPickup();
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (pickupItem!=null)
+            {
+                drop();
+            }
+            else
+            {
+                pickup();
+            }
         }
     }
 }

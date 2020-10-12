@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3919496508935615431}
   m_Layer: 10
   m_Name: normalRelay
-  m_TagString: Untagged
+  m_TagString: relay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 189183373167226112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.4515704, y: -3.4470541, z: 0}
-  m_LocalScale: {x: 0.59999996, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -90,11 +90,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 189183373167226112}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: f9f706f6d79bae747bc96c576ba2fb1b, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.052607894, y: 0.007584423}
+  m_Offset: {x: 0.052607894, y: 0.011507273}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -105,7 +105,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3500197, y: 1.8083227}
+  m_Size: {x: 1.3500197, y: 1.7534013}
   m_EdgeRadius: 0
 --- !u!50 &3919496508935615431
 Rigidbody2D:

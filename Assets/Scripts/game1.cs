@@ -10,9 +10,6 @@ public class game1 : MonoBehaviour
 
     public List<GameObject> trapGrounds;
 
-    public Transform player1born;
-    public Transform player2born;
-
     public GameObject Player1;
     public GameObject Player2;
 
@@ -42,8 +39,8 @@ public class game1 : MonoBehaviour
     {
         if (isInit&&Input.anyKeyDown)
         {
-            Instantiate(Player1, player1born.position, player1born.rotation);
-            Instantiate(Player2, player2born.position, player2born.rotation);
+            Player1.SetActive(true);
+            Player2.SetActive(true);
             foreach (var item in trapGrounds)
             {
                 item.GetComponent<trapBreak>().BreakTrap();

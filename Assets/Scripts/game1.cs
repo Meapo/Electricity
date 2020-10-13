@@ -3,28 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class game1 : MonoBehaviour
+public class game1 : GameManagerController
 {
-    public Animator anim;
-    public float transitionTime = 1f;
-
-    public List<GameObject> trapGrounds;
-
-    public GameObject Player1;
-    public GameObject Player2;
 
     private bool isInit = true;
 
-    static public game1 instance;
+    static public game1 game1Instance;
     private void Awake()
     {
-        if (instance!=null)
+        if (game1Instance!=null)
         {
             Debug.Log("Find other gamemanager instance.");
         }
         else
         {
-            instance = this;
+            game1Instance = this;
         }
     }
 
@@ -47,19 +40,5 @@ public class game1 : MonoBehaviour
             }
             isInit = false;
         }
-    }
-
-    public void Die()
-    {
-        StartCoroutine(ReloadLevel());
-    }
-
-    IEnumerator ReloadLevel()
-    {
-        anim.SetTrigger("end");
-
-        yield return new WaitForSeconds(transitionTime);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

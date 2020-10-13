@@ -6,11 +6,12 @@ public class Trap : MonoBehaviour
 {
     public LayerMask player;
 
-    private game1 instance;
-
+    private GameManagerController instance;
+    private game1 game1Instance;
     private void Start()
     {
-        instance = game1.instance;
+        instance = GameManagerController.instance;
+        game1Instance = game1.game1Instance;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -20,7 +21,14 @@ public class Trap : MonoBehaviour
         if (layer==player.value)
         {
             Debug.Log("Player die");
-            instance.Die();
+            if (instance!=null)
+            {
+                instance.Die();
+            }
+            else
+            {
+                game1Instance.Die();
+            }
         }
     }
 }

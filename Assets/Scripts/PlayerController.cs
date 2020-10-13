@@ -210,6 +210,7 @@ public class PlayerController : MonoBehaviour
                     anim.SetBool("isGround", isGround);
                     if (isFirstGround&&dustAnim!=null)
                     {
+                        //createdDust = Instantiate(dustAnim, dustPoint.position, dustPoint.rotation);
                         createdDust = Instantiate(dustAnim, dustPoint.position, dustPoint.rotation);
                         StartCoroutine(destoryDust());
                         isFirstGround = false;

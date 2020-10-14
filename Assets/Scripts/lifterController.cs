@@ -27,7 +27,9 @@ public class lifterController : MonoBehaviour
 
     private void Update()
     {
-        
+        // 判断player是否在box内部,在内部则让其boxcollider失效，否则令其有效
+        IsInBox(player1);
+        IsInBox(player2);
     }
 
     private void FixedUpdate()
@@ -45,9 +47,7 @@ public class lifterController : MonoBehaviour
             }
         }
 
-        // 判断player是否在box内部,在内部则让其boxcollider失效，否则令其有效
-        IsInBox(player1);
-        IsInBox(player2);
+        
 
     }
 

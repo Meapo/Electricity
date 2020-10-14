@@ -9,6 +9,8 @@ public class Electricity : MonoBehaviour
     private int itemCount;
 
     List<List<float>> distanceMatrix = new List<List<float>>();
+    private List<bool> isVisited;
+    private float maxDistance = 3.3f;
 
     private float LifeTime = 3.0f;
     private GameManagerController instance;
@@ -46,7 +48,20 @@ public class Electricity : MonoBehaviour
     {
         updateDistanceMatrix();
         List<int> link = new List<int>();
-        minDistance(link, 0, 1);
+        if (distanceMatrix[0][1]<=maxDistance)
+        {
+            link.Add(0); link.Add(1);
+        }
+        else
+        {
+            isVisited = new List<bool>();
+            for (int i = 0; i < itemCount; i++)
+            {
+                isVisited.Add(false);
+            }
+            minDistance(link, 0, 1);
+        }
+       
         if (link.Count==0)
         {
             LifeTime -= Time.fixedDeltaTime;
@@ -108,7 +123,7 @@ public class Electricity : MonoBehaviour
             for (int j = i; j < itemCount; j++)
             {
                 float distance = Vector2.Distance(transforms[i].position, transforms[j].position);
-                if (distance > 3f)
+                if (distance > maxDistance)
                 {
                     distance = float.MaxValue;
                 }
@@ -118,28 +133,39 @@ public class Electricity : MonoBehaviour
         }
     }
 
-    void minDistance(List<int> result, int cur, int end)
+    bool minDistance(List<int> result, int cur, int end)
     {
         result.Add(cur);
+        isVisited[cur] = true;
         if (cur==end)
         {
-            return;
+            return true;
         }
         else
         {
-            int next = findMinDistance(cur);
-            if (next==-1)
+            int next = -1;
+            bool isExist = false;
+            for (int i = 0; i < itemCount; i++)
             {
-                result.Clear();
-                return;
+                if (!isVisited[i]&&distanceMatrix[cur][i]<=maxDistance)
+                {
+                    next = i;
+                    if(minDistance(result, next, end))
+                    {
+                        isExist = true;
+                    }
+                }
+            }
+            if (next==-1||!isExist)
+            {
+                result.Remove(cur);
+                return false;
             }
             else
             {
-                float tempDistance = distanceMatrix[cur][next];
-                distanceMatrix[cur][next] = distanceMatrix[next][cur] = float.MaxValue;
-                minDistance(result, next, end);
-                distanceMatrix[cur][next] = distanceMatrix[next][cur] = tempDistance;
+                return true;
             }
+
         }
     }
 

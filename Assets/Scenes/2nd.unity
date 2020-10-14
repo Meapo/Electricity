@@ -154,7 +154,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 21744974}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: f9f706f6d79bae747bc96c576ba2fb1b, type: 2}
+  m_Material: {fileID: 6200000, guid: 3703c3a21913c0d40bc5c4eceef98331, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1319,7 +1319,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 8a76e7dae6e337543a953fce155c7442, type: 3}
 --- !u!95 &1427726823 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 1339572490007736306, guid: 8a76e7dae6e337543a953fce155c7442,
+  m_CorrespondingSourceObject: {fileID: 6342811403388806258, guid: 8a76e7dae6e337543a953fce155c7442,
     type: 3}
   m_PrefabInstance: {fileID: 1427726822}
   m_PrefabAsset: {fileID: 0}

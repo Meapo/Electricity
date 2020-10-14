@@ -20,7 +20,7 @@ public class Trap : MonoBehaviour
         int layer = 1 << item.layer;
         if (layer==player.value)
         {
-            Debug.Log("Player die");
+            gameObject.GetComponent<Collider2D>().enabled = false;
             if (instance!=null)
             {
                 instance.Die();

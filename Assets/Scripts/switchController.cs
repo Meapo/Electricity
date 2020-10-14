@@ -30,7 +30,6 @@ public class switchController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag=="relay")
         {
             isOpen = true;

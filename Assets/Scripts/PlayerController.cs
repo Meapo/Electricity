@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    protected AudioSource music;
+    protected AudioClip jump;
+
     public GameObject dustAnim;
     private GameObject createdDust;
     public Transform dustPoint;
@@ -51,6 +54,13 @@ public class PlayerController : MonoBehaviour
     public LayerMask trap;
 
     public Animator anim;
+
+    private void Awake()
+    {
+        music = gameObject.AddComponent<AudioSource>();
+        music.playOnAwake = false;
+        jump = Resources.Load<AudioClip>("Music/jump1");
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -189,6 +199,8 @@ public class PlayerController : MonoBehaviour
             isGround = false;
             anim.SetBool("isGround", isGround);
             anim.SetTrigger("jump");
+            music.clip = jump;
+            music.Play();
             isPressed = false;
         }
     }

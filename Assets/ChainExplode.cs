@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class ChainExplode : MonoBehaviour
 {
+    private AudioSource music;
+    private AudioClip Boom;
     public List<GameObject> trapGrounds;
     public GameObject Switch;
     public float gapTime = 1f;
     private bool hasExplode = false;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        
+        music = gameObject.AddComponent<AudioSource>();
+        music.playOnAwake = false;
+        Boom = Resources.Load<AudioClip>("Music/boom2");
     }
 
     // Update is called once per frame
@@ -33,6 +37,8 @@ public class ChainExplode : MonoBehaviour
     IEnumerator explode(GameObject item, float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        music.clip = Boom;
+        music.Play();
         item.GetComponent<Crasher>().Crash();
         item.SetActive(false);
     }

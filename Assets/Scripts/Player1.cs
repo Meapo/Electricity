@@ -2,6 +2,12 @@
 
 public class Player1 : PlayerController
 {
+    //private void Awake()
+    //{
+    //    music = gameObject.AddComponent<AudioSource>();
+    //    music.playOnAwake = false;
+    //    jump = Resources.Load<AudioClip>("Music/jump1");
+    //}
     protected override void pressMove()
     {
         base.pressMove();

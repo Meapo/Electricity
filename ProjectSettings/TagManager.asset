@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tilemap
   - relay
+  - BGM
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Relay
   - Trap
   - Fragment
-  - 
+  - Lifter
   - 
   - 
   - 

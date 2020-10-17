@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Player2 : PlayerController
 {
-
+    //private void Awake()
+    //{
+    //    music = gameObject.AddComponent<AudioSource>();
+    //    music.playOnAwake = false;
+    //    jump = Resources.Load<AudioClip>("Music/jump1");
+    //}
     protected override void isPressedJump()
     {
         base.isPressedJump();

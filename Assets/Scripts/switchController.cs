@@ -7,7 +7,7 @@ public class switchController : MonoBehaviour
     public SpriteRenderer open;
     public SpriteRenderer close;
     public bool isOpen = false;
-
+    public GameObject door;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +33,11 @@ public class switchController : MonoBehaviour
         if (collision.gameObject.tag=="relay")
         {
             isOpen = true;
+            if (door!=null)
+            {
+                door.GetComponent<doorController>().openDoorAudioPlay();
+            }
+            
         }
     }
 

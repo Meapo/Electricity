@@ -19,6 +19,10 @@ public class game1 : GameManagerController
         {
             game1Instance = this;
         }
+        music = gameObject.AddComponent<AudioSource>();
+        music.playOnAwake = false;
+        death = Resources.Load<AudioClip>("Music/death1");
+        Boom = Resources.Load<AudioClip>("Music/boom2");
     }
 
     // Start is called before the first frame update
@@ -37,6 +41,12 @@ public class game1 : GameManagerController
             foreach (var item in trapGrounds)
             {
                 item.GetComponent<trapBreak>().BreakTrap();
+                if (!music.isPlaying)
+                {
+                    music.clip = Boom;
+                    music.Play();
+                }
+                
             }
             isInit = false;
         }

@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerController : MonoBehaviour
 {
+    protected AudioSource music;
+    protected AudioClip death;
+    protected AudioClip Boom;
     public Animator anim;
     public float transitionTime = 1f;
 
@@ -24,12 +27,16 @@ public class GameManagerController : MonoBehaviour
         {
             instance = this;
         }
+        music = gameObject.AddComponent<AudioSource>();
+        music.playOnAwake = false;
+        death = Resources.Load<AudioClip>("Music/death1");
+        Boom = Resources.Load<AudioClip>("Music/boom2");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -40,6 +47,11 @@ public class GameManagerController : MonoBehaviour
 
     public void Die()
     {
+        if (!music.isPlaying)
+        {
+            music.clip = death;
+            music.Play();
+        }
         StartCoroutine(ReloadLevel());
     }
 

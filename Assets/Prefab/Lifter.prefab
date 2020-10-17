@@ -124,5 +124,5 @@ MonoBehaviour:
   pauseTime: 1
   player1: {fileID: 0}
   player2: {fileID: 0}
-  heightOffset: 0.01
+  heightOffset: 0
   speedAttenuationCoef: 0.5

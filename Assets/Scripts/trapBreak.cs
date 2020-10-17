@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 public class trapBreak : MonoBehaviour
 {
-    
 
     public void BreakTrap()
     {

@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Electricity : MonoBehaviour
 {
+    public SpriteRenderer player1;
+    public SpriteRenderer player2; 
+
     // 一定要确保第一个是player1，第二个是player2，后面的是relay
     public List<Transform> transforms;
     private int itemCount;
 
     List<List<float>> distanceMatrix = new List<List<float>>();
-    private List<bool> isVisited;
+    
+    List<int> link;
+    float minLength;
+
     private float maxDistance = 3.3f;
 
-    private float LifeTime = 3.0f;
+    public float maxLifeTime = 3.0f;
+    private float LifeTime;
     private GameManagerController instance;
     private game1 game1Instance;
 
@@ -22,6 +29,7 @@ public class Electricity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LifeTime = maxLifeTime;
         instance = GameManagerController.instance;
         game1Instance = game1.game1Instance;
         chainLightning = GetComponent<ChainLightning>();
@@ -41,27 +49,25 @@ public class Electricity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        player1.color = new Color(player1.color.r, player1.color.g, player1.color.b, LifeTime / maxLifeTime);
+        player2.color = new Color(player2.color.r, player2.color.g, player2.color.b, LifeTime / maxLifeTime);
     }
 
     private void FixedUpdate()
     {
         updateDistanceMatrix();
-        List<int> link = new List<int>();
+        link = new List<int>();
         if (distanceMatrix[0][1]<=maxDistance)
         {
             link.Add(0); link.Add(1);
         }
         else
         {
-            isVisited = new List<bool>();
-            for (int i = 0; i < itemCount; i++)
-            {
-                isVisited.Add(false);
-            }
-            minDistance(link, 0, 1);
+            minLength = float.MaxValue;
+            List<int> temp = new List<int>();
+            minDistance(temp, 0, 1, 0f);
         }
-       
+
         if (link.Count==0)
         {
             LifeTime -= Time.fixedDeltaTime;
@@ -72,7 +78,7 @@ public class Electricity : MonoBehaviour
         }
         else
         {
-            LifeTime = 3.0f;
+            LifeTime = maxLifeTime;
             // 连接电流
             lineRenderer.enabled = true;
             chainLightning.StartPosition = transforms[link[0]];
@@ -97,7 +103,7 @@ public class Electricity : MonoBehaviour
             {
                 Debug.LogError("No game manager instance.");
             }
-            
+            //LifeTime = maxLifeTime;
             
         }
     }
@@ -110,7 +116,7 @@ public class Electricity : MonoBehaviour
             List<float> item = new List<float>();
             for (int i = 0; i < itemCount; i++)
             {
-                item.Add(0f);
+                item.Add(float.MaxValue);
             }
             distanceMatrix.Add(item);
         }
@@ -120,7 +126,7 @@ public class Electricity : MonoBehaviour
     {
         for (int i = 0; i < itemCount - 1; i++)
         {
-            for (int j = i; j < itemCount; j++)
+            for (int j = i + 1; j < itemCount; j++)
             {
                 float distance = Vector2.Distance(transforms[i].position, transforms[j].position);
                 if (distance > maxDistance)
@@ -133,57 +139,36 @@ public class Electricity : MonoBehaviour
         }
     }
 
-    bool minDistance(List<int> result, int cur, int end)
+    void minDistance(List<int> route, int cur, int end, float length)
     {
-        result.Add(cur);
-        isVisited[cur] = true;
+        route.Add(cur);
+        if (route[0]!=0)
+        {
+            Debug.LogError("wtf: " + route[0]);
+        }
         if (cur==end)
         {
-            return true;
+            if (length < minLength)
+            {
+                List<int> temp = new List<int>(route);
+                link = temp;
+                minLength = length;
+            }
         }
         else
         {
-            int next = -1;
-            bool isExist = false;
             for (int i = 0; i < itemCount; i++)
             {
-                if (!isVisited[i]&&distanceMatrix[cur][i]<=maxDistance)
+                if (distanceMatrix[cur][i]<=maxDistance)
                 {
-                    next = i;
-                    if(minDistance(result, next, end))
-                    {
-                        isExist = true;
-                    }
-                }
-            }
-            if (next==-1||!isExist)
-            {
-                result.Remove(cur);
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
-        }
-    }
-
-    int findMinDistance(int ind)
-    {
-        float min = float.MaxValue;
-        int result = -1;
-        for (int i = 0; i < itemCount; i++)
-        {
-            if (i!=ind)
-            {
-                if (distanceMatrix[i][ind] < min)
-                {
-                    min = distanceMatrix[i][ind];
-                    result = i;
+                    float temp = distanceMatrix[cur][i];
+                    distanceMatrix[i][cur] = distanceMatrix[cur][i] = float.MaxValue;
+                    minDistance(new List<int>(route), i, end, length + temp);
+                    distanceMatrix[i][cur] = distanceMatrix[cur][i] = temp;
                 }
             }
         }
-        return result;
+        route.Remove(cur);
     }
+
 }

@@ -219,6 +219,16 @@ PrefabInstance:
       propertyPath: transforms.Array.data[3]
       value: 
       objectReference: {fileID: 1362482240}
+    - target: {fileID: 515573369907759961, guid: b37d345e3533fbb44b244ed4067b7f25,
+        type: 3}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 1618022496}
+    - target: {fileID: 515573369907759961, guid: b37d345e3533fbb44b244ed4067b7f25,
+        type: 3}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 1136089663}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b37d345e3533fbb44b244ed4067b7f25, type: 3}
 --- !u!4 &238093855 stripped
@@ -1431,6 +1441,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cac241781307f84caa964c1b3fe7b51, type: 3}
+--- !u!212 &1136089663 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3139476848115634276, guid: 1cac241781307f84caa964c1b3fe7b51,
+    type: 3}
+  m_PrefabInstance: {fileID: 1136089662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1258253708 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4285808688939129760, guid: 9af7ac95b6ed26d47829aac7adf92d45,
@@ -1518,6 +1534,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a38966310dc83c14ebd8fe4f03dcc59e, type: 3}
+--- !u!212 &1618022496 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4431540292272399842, guid: a38966310dc83c14ebd8fe4f03dcc59e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1618022495}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1628260832
 PrefabInstance:
   m_ObjectHideFlags: 0

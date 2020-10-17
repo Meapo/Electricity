@@ -162,10 +162,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c939105b9792140aa8eaa8327e2be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   transforms:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  maxLifeTime: 3
 --- !u!114 &4504084185218151721
 MonoBehaviour:
   m_ObjectHideFlags: 0

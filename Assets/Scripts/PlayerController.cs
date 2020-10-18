@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask ground;
     public LayerMask relay;
     public LayerMask trap;
+    public LayerMask fragment;
 
     public Animator anim;
 
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // 判断左右是否有player/relay阻挡
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(judgeLength, boxCollider.size.y * transform.localScale.y - 0.15f), 0f);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(judgeLength, boxCollider.size.y * transform.localScale.y - 0.15f), 0f, (~trap) & (~fragment));
         if (colliders.Length == 1)
         {
             StopRight = false;
@@ -147,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(groundJudgePoint.position, new Vector2(judgeLength/lengthCoef-0.1f, boxCollider.size.y * transform.localScale.y - groundJudgeOffset), 0f, ~trap);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(groundJudgePoint.position, new Vector2(judgeLength/lengthCoef-0.1f, boxCollider.size.y * transform.localScale.y - groundJudgeOffset), 0f, (~trap) & (~fragment));
         if (colliders.Length==1)
         {
             isGround = false;
@@ -171,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(groundJudgePoint.position, new Vector2(judgeLength / lengthCoef - 0.1f, boxCollider.size.y * transform.localScale.y - groundJudgeOffset), 0f, ~trap);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(groundJudgePoint.position, new Vector2(judgeLength / lengthCoef - 0.1f, boxCollider.size.y * transform.localScale.y - groundJudgeOffset), 0f, (~trap)&(~fragment));
         foreach (var item in colliders)
         {
             if (item.gameObject!=gameObject)

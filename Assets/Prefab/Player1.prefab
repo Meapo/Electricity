@@ -332,6 +332,9 @@ MonoBehaviour:
   trap:
     serializedVersion: 2
     m_Bits: 2048
+  fragment:
+    serializedVersion: 2
+    m_Bits: 4096
   anim: {fileID: 4431540292272399843}
 --- !u!1 &4431540293340749978
 GameObject:

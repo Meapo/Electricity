@@ -70,7 +70,7 @@ public class Crasher : MonoBehaviour
         for (int i = 0; i < splits.Length; i++)
         {
             splitXs[i + 1] = splits[i].x;
-            // splitYs[i + 1] = spriteHeight - splits[i].y;    // y轴坐标系倒转
+            //splitYs[i + 1] = spriteHeight - splits[i].y;    // y轴坐标系倒转
             splitYs[i + 1] = splits[i].y;
         }
         // 对数组进行升序排序
